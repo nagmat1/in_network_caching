@@ -26,8 +26,9 @@ tcpdump -s 65535 -v -i enp2s0 -nn -B 544096 -w dtn4.pcap
 ```
 python3 socket_receive_file.py
 ```
-6. Run the sender python socket : 
+6. Decrease the sender speed and run the sender python socket : 
 ```
+sudo tc qdisc add dev enp1s0f1 root netem rate 1024mbit
 python3 socket_send_file.py 192.168.1.1 10GB_file.txt
 ```
 7. Trigger the parsing in while transfer is being done : 
